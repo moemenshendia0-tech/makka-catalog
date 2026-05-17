@@ -1397,6 +1397,8 @@ footer {
 <script>
 const PHONE = "201552079581";
 const IMG_BASE = "./";
+/* رابط الموقع المنشور — لروابط واتساب (مش file:// من الجهاز) */
+const PUBLIC_SITE = "https://moemenshendia0-tech.github.io/makka-catalog/";
 
 const IMG_PATHS = {
   "lisco_q01": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(1).jpeg",
@@ -1463,11 +1465,21 @@ function getImgSrc(key) {
   return key && IMG_PATHS[key] ? resolveImgPath(IMG_PATHS[key]) : null;
 }
 
+function getSiteBase() {
+  if (location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    return PUBLIC_SITE;
+  }
+  const dir = location.pathname.replace(/\/[^/]*$/, "/");
+  return location.origin + dir;
+}
+
 function getAbsoluteImgSrc(key) {
   const rel = getImgSrc(key);
   if (!rel) return null;
   try {
-    return new URL(rel, window.location.href).href;
+    const path = rel.replace(/^\.\//, "");
+    const url = new URL(path, getSiteBase()).href;
+    return url.startsWith("https://") ? url : null;
   } catch {
     return null;
   }
@@ -1478,7 +1490,7 @@ let modalProduct = null;
 function buildWhatsAppMessage(p) {
   const specLines = Object.entries(p.specs || {}).map(([k, v]) => `• ${k}: ${v}`).join("\n");
   const imgUrl = getAbsoluteImgSrc(p.img);
-  const imgLine = imgUrl ? `\n${imgUrl}` : "";
+  const imgLine = imgUrl ? `\n\n${imgUrl}` : "";
   return `مرحبا 👋، عايز أسأل عن المنتج ده:
 
 🔹 *${p.name}*
