@@ -1381,7 +1381,7 @@ footer {
       <div class="specs-grid" id="specsGrid"></div>
     </div>
     <div class="modal-actions">
-      <a class="act-wa" id="modalWa" href="#" target="_blank" onclick="return sendWhatsAppInquiry(event)">💬 تواصل للطلب (مع صورة)</a>
+      <a class="act-wa" id="modalWa" href="#" onclick="return sendWhatsAppInquiry(event)">💬 تواصل للطلب</a>
       <a class="act-call" href="tel:01552079581">📞 اتصل بينا</a>
     </div>
   </div>
@@ -1463,60 +1463,34 @@ function getImgSrc(key) {
   return key && IMG_PATHS[key] ? resolveImgPath(IMG_PATHS[key]) : null;
 }
 
-function getAbsoluteImgSrc(key) {
-  const rel = getImgSrc(key);
-  if (!rel) return null;
-  try {
-    return new URL(rel, window.location.href).href;
-  } catch {
-    return null;
-  }
-}
-
 let modalProduct = null;
 
 function buildWhatsAppMessage(p) {
   const specLines = Object.entries(p.specs || {}).map(([k, v]) => `• ${k}: ${v}`).join("\n");
-  const imgUrl = getAbsoluteImgSrc(p.img);
-  const imgBlock = imgUrl ? `\n\n🖼️ صورة المنتج:\n${imgUrl}` : "";
   return `مرحبا 👋، عايز أسأل عن المنتج ده:
 
 🔹 *${p.name}*
 🏢 الشركة: ${p.company || ""}
 
 📋 *التفاصيل:*
-${specLines}${imgBlock}
+${specLines}
 
 من كتالوج مكة للأدوات الصحية`;
 }
 
-async function sendWhatsAppInquiry(e) {
+function sendWhatsAppInquiry(e) {
   if (e) e.preventDefault();
   const p = modalProduct;
   if (!p) return false;
 
-  const msgText = buildWhatsAppMessage(p);
-  const imgUrl = getAbsoluteImgSrc(p.img);
+  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(buildWhatsAppMessage(p))}`;
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  if (imgUrl && navigator.share) {
-    try {
-      const res = await fetch(imgUrl);
-      if (res.ok) {
-        const blob = await res.blob();
-        const ext = (blob.type || "").includes("png") ? "png" : "jpg";
-        const file = new File([blob], `makka-${p.id}.${ext}`, { type: blob.type || "image/jpeg" });
-        const shareData = { text: msgText, files: [file] };
-        if (!navigator.canShare || navigator.canShare(shareData)) {
-          await navigator.share(shareData);
-          return false;
-        }
-      }
-    } catch (err) {
-      if (err && err.name === "AbortError") return false;
-    }
+  if (isMobile) {
+    window.location.href = url;
+  } else {
+    window.open(url, "_blank");
   }
-
-  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msgText)}`, "_blank");
   return false;
 }
 
