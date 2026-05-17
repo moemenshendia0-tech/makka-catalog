@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكة للأدوات الصحية — كتالوج التشطيب</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --bg2: #111114;
+  --bg3: #18181d;
+  --surface: #1e1e25;
+  --surface2: #26262f;
+  --border: rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.12);
+  --gold: #c9a84c;
+  --gold2: #e8c86e;
+  --gold3: #f5e0a0;
+  --cream: #f2ede4;
+  --muted: #7a7a8a;
+  --muted2: #a0a0b2;
+  --white: #f0eff8;
+  --green: #4caf7a;
+  --red: #e05555;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .025;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========= HEADER ========= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  height: 68px;
+  background: rgba(12,12,14,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(201,168,76,.3);
+}
+
+.logo-text-wrap .logo-main {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+}
+.logo-text-wrap .logo-sub {
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-wa {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.btn-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,.3); }
+
+.btn-call {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold2);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* ========= HERO ========= */
+.hero {
+  position: relative;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(201,168,76,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.25);
+  color: var(--gold2);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+  position: relative;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+.hero p {
+  color: var(--muted2);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 460px;
+  margin: 0 auto 2.5rem;
+  font-family: 'Tajawal', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-block { text-align: center; }
+.stat-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold2), var(--gold3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* ========= SEARCH BAR ========= */
+.search-section {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 68px;
+  z-index: 400;
+  backdrop-filter: blur(12px);
+}
+
+.search-box {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  padding: 10px 42px 10px 14px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+}
+.search-input::placeholder { color: var(--muted); }
+
+.brand-filter {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  padding: 10px 14px;
+  outline: none;
+  cursor: pointer;
+  min-width: 130px;
+}
+.brand-filter option { background: var(--surface); }
+
+/* ========= LAYOUT ========= */
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - 140px);
+  position: relative;
+}
+
+/* ========= SIDEBAR ========= */
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  position: sticky;
+  top: 125px;
+  height: calc(100vh - 125px);
+  overflow-y: auto;
+  padding: 1.5rem 0;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2.5px;
+  padding: 0 1.2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 1.2rem;
+  cursor: pointer;
+  transition: all .15s;
+  border-right: 2px solid transparent;
+  font-size: 13px;
+  color: var(--muted2);
+  font-family: 'Cairo', sans-serif;
+  background: none;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  width: 100%;
+  text-align: right;
+}
+.cat-btn:hover { background: rgba(201,168,76,.04); color: var(--white); border-right-color: rgba(201,168,76,.3); }
+.cat-btn.active {
+  background: rgba(201,168,76,.07);
+  border-right-color: var(--gold);
+  color: var(--gold2);
+  font-weight: 700;
+}
+
+.cat-icon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
+.cat-name { flex: 1; }
+.cat-cnt {
+  font-size: 10px;
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 10px;
+  color: var(--muted);
+}
+.cat-btn.active .cat-cnt { background: rgba(201,168,76,.15); color: var(--gold); }
+
+/* ========= MAIN CONTENT ========= */
+.main-content {
+  flex: 1;
+  padding: 1.8rem;
+  overflow-y: auto;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--white);
+}
+
+.results-pill {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+/* ========= SUB TABS ========= */
+.sub-tabs {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+
+.sub-tab {
+  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 25px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--muted2);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  transition: all .15s;
+}
+.sub-tab:hover { border-color: var(--gold); color: var(--gold2); }
+.sub-tab.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0c0c0e;
+  font-weight: 700;
+}
+
+/* ========= PRODUCT GRID ========= */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), border-color .2s, box-shadow .2s;
+  position: relative;
+  animation: fadeUp .35s ease both;
+}
+
+.product-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(201,168,76,.4);
+  box-shadow: 0 16px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(201,168,76,.15);
+}
+
+.product-image {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(145deg, var(--bg3), var(--surface2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(201,168,76,.07), transparent 65%);
+}
+
+.badge-new, .badge-hot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  z-index: 1;
+}
+.badge-new { background: var(--gold); color: var(--bg); }
+.badge-hot { background: var(--red); color: #fff; }
+
+.product-body { padding: 13px; }
+
+.product-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.45;
+  margin-bottom: 7px;
+}
+
+.product-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+  color: var(--muted2);
+  border: 1px solid var(--border);
+}
+.tag.highlight { background: rgba(201,168,76,.1); color: var(--gold2); border-color: rgba(201,168,76,.25); }
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-brand { font-size: 11px; color: var(--muted); font-family: 'Tajawal', sans-serif; }
+
+.stock-badge {
+  font-size: 10px;
+  color: var(--green);
+  background: rgba(76,175,122,.1);
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(76,175,122,.2);
+}
+
+/* ========= EMPTY ========= */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+.empty-state p { font-family: 'Tajawal', sans-serif; font-size: 15px; }
+
+/* ========= MODAL ========= */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(8px);
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: scaleIn .25s cubic-bezier(.34,1.56,.64,1);
+}
+.modal::-webkit-scrollbar { width: 4px; }
+.modal::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-top h3 { font-size: 1rem; font-weight: 700; color: var(--white); }
+
+.close-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+}
+.close-btn:hover { background: var(--surface2); color: var(--white); }
+
+.modal-content { padding: 1.2rem 1.5rem 1.5rem; }
+#modalImgSection { text-align: center; margin-bottom: 1rem; }
+
+.modal-emoji {
+  font-size: 4.5rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(201,168,76,.2));
+}
+
+.specs-grid {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+.spec-row {
+  display: flex;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  gap: 12px;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-key { color: var(--muted2); flex: 0 0 40%; font-family: 'Tajawal', sans-serif; }
+.spec-val { color: var(--white); font-weight: 600; font-family: 'Tajawal', sans-serif; }
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.act-wa {
+  flex: 1;
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.act-wa:hover { opacity: .88; }
+
+.act-call {
+  flex: 1;
+  background: var(--surface);
+  color: var(--white);
+  border: 1px solid var(--border2);
+  padding: 13px;
+  border-radius: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  text-decoration: none;
+  transition: border-color .15s;
+}
+.act-call:hover { border-color: var(--gold); color: var(--gold2); }
+
+/* ========= FOOTER ========= */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--gold); margin-bottom: .5rem; }
+.footer-tagline { font-size: 13px; color: var(--muted); font-family: 'Tajawal', sans-serif; line-height: 1.7; }
+.footer-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+/* ========= MOBILE CATEGORY BAR ========= */
+.mobile-cats {
+  display: none;
+  position: sticky;
+  top: 68px;
+  z-index: 390;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1rem;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mobile-cats::-webkit-scrollbar { display: none; }
+.mobile-cat-btn {
+  flex: 0 0 auto;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--muted2);
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+.mobile-cat-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0c0c0e;
+  font-weight: 700;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .mobile-cats { display: flex; }
+
+  header {
+    padding: 0 .85rem;
+    height: 60px;
+  }
+  .logo-text-wrap .logo-main { font-size: 14px; }
+  .logo-text-wrap .logo-sub { font-size: 9px; letter-spacing: 1px; }
+  .logo-mark { width: 36px; height: 36px; font-size: 18px; }
+  .btn-wa { padding: 8px 14px; font-size: 12px; }
+  .btn-call { display: none; }
+
+  .hero {
+    padding: 2rem 1rem 1.25rem;
+  }
+  .hero-stats { gap: 1.5rem; }
+  .stat-num { font-size: 1.75rem; }
+
+  .quick-sections {
+    padding: 0 1rem 1rem;
+    gap: 8px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .quick-sections::-webkit-scrollbar { display: none; }
+  .quick-btn {
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .mobile-cats { top: 60px; }
+
+  .search-section {
+    padding: .75rem 1rem;
+    top: 112px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-box { min-width: 0; }
+  .brand-filter { width: 100%; min-width: 0; }
+
+  .page-layout { flex-direction: column; min-height: auto; }
+  .main-content { padding: 1rem; }
+
+  .content-header { margin-bottom: .9rem; }
+  .section-title { font-size: 1rem; }
+
+  .sub-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sub-tabs::-webkit-scrollbar { display: none; }
+  .sub-tab { flex: 0 0 auto; }
+
+  .product-image { height: 120px; }
+  .product-name { font-size: 12px; }
+  .product-body { padding: 10px; }
+
+  .modal {
+    max-height: 88vh;
+    border-radius: 16px;
+  }
+  .modal-content { padding: 1rem; }
+  .modal-product-img {
+    max-height: min(50vh, 320px);
+    width: 100%;
+    object-fit: contain;
+  }
+  .modal-actions {
+    flex-direction: column;
+    padding: .85rem 1rem;
+  }
+
+  footer { padding: 2rem 1rem; }
+
+  .floating-wa {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: max(16px, env(safe-area-inset-left));
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .product-grid,
+  .company-block-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .product-image { height: 160px; }
+}
+
+/* ========= ANIMATIONS ========= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========= COMPANY FILTER ========= */
+.company-section {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.company-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2.5px;
+  padding: 0 1.2rem;
+  margin-bottom: .7rem;
+  text-transform: uppercase;
+  display: block;
+}
+.company-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 1.2rem;
+  cursor: pointer;
+  transition: all .15s;
+  border-right: 2px solid transparent;
+  font-size: 12px;
+  color: var(--muted2);
+  font-family: 'Cairo', sans-serif;
+  background: none;
+  border-left: none; border-top: none; border-bottom: none;
+  width: 100%;
+  text-align: right;
+}
+.company-btn:hover { background: rgba(201,168,76,.04); color: var(--white); border-right-color: rgba(201,168,76,.3); }
+.company-btn.active {
+  background: rgba(201,168,76,.07);
+  border-right-color: var(--gold);
+  color: var(--gold2);
+  font-weight: 700;
+}
+.company-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.company-cnt {
+  font-size: 10px;
+  background: var(--surface);
+  padding: 2px 7px;
+  border-radius: 10px;
+  color: var(--muted);
+  margin-right: auto;
+}
+.company-btn.active .company-cnt { background: rgba(201,168,76,.15); color: var(--gold); }
+
+/* ========= PRODUCT IMAGE ========= */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.product-card:hover .product-image img { transform: scale(1.05); }
+.product-company-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.55);
+  color: var(--gold2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(201,168,76,.2);
+}
+
+/* ========= MODAL IMAGE ========= */
+.modal-product-img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  background: var(--bg3);
+  display: block;
+}
+
+
+/* ======= ENHANCED DESIGN SYSTEM ======= */
+:root {
+  --gold-glow: rgba(201,168,76,.18);
+  --card-radius: 18px;
+  --transition-smooth: all .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ======= SCROLLBAR ======= */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+/* ======= HERO UPGRADE ======= */
+.hero-eyebrow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(201,168,76,.15); }
+}
+
+/* ======= SEARCH UPGRADE ======= */
+.search-section {
+  background: linear-gradient(180deg, var(--bg2) 0%, rgba(17,17,20,.98) 100%);
+}
+.search-input {
+  transition: var(--transition-smooth);
+  background: rgba(30,30,37,.9);
+}
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15), 0 0 20px rgba(201,168,76,.08);
+  background: var(--surface);
+}
+
+/* ======= SIDEBAR UPGRADE ======= */
+.sidebar {
+  background: linear-gradient(180deg, var(--bg2) 0%, #0e0e12 100%);
+}
+.cat-btn {
+  transition: var(--transition-smooth);
+  border-radius: 0 8px 8px 0;
+  margin-left: 8px;
+}
+.cat-btn.active {
+  background: linear-gradient(90deg, rgba(201,168,76,.12), rgba(201,168,76,.04));
+  box-shadow: inset 0 0 20px rgba(201,168,76,.05);
+}
+.company-btn {
+  transition: var(--transition-smooth);
+  border-radius: 0 8px 8px 0;
+  margin-left: 8px;
+}
+
+/* ======= PRODUCT CARD UPGRADE ======= */
+.product-card {
+  background: linear-gradient(145deg, #1e1e26 0%, #19191f 100%);
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255,255,255,.06);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* shimmer line on top of card */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.4), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.product-card:hover::after { opacity: 1; }
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,168,76,.35);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.35);
+}
+
+/* ======= PRODUCT IMAGE UPGRADE ======= */
+.product-image {
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  overflow: hidden;
+  position: relative;
+}
+.product-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, rgba(18,18,22,.9));
+  pointer-events: none;
+}
+.product-image img {
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.product-card:hover .product-image img {
+  transform: scale(1.08);
+}
+
+/* ======= TAGS UPGRADE ======= */
+.tag {
+  transition: var(--transition-smooth);
+  font-size: 10px;
+  letter-spacing: .3px;
+}
+.tag.highlight {
+  background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(232,200,110,.08));
+  border-color: rgba(201,168,76,.3);
+}
+
+/* ======= BADGE UPGRADE ======= */
+.badge-new {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #0c0c0e;
+  font-size: 9px;
+  letter-spacing: .5px;
+  box-shadow: 0 2px 10px rgba(201,168,76,.4);
+  animation: badge-pop .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes badge-pop {
+  from { transform: scale(0) rotate(-10deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+/* ======= STOCK BADGE ======= */
+.stock-badge {
+  font-size: 10px;
+  background: linear-gradient(135deg, rgba(76,175,122,.15), rgba(76,175,122,.05));
+  border-color: rgba(76,175,122,.3);
+  box-shadow: 0 0 8px rgba(76,175,122,.1);
+}
+
+/* ======= SUB TABS UPGRADE ======= */
+.sub-tab {
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.sub-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,.1), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.sub-tab:hover::before { opacity: 1; }
+.sub-tab.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  box-shadow: 0 4px 15px rgba(201,168,76,.3);
+}
+
+/* ======= MODAL UPGRADE ======= */
+.modal {
+  background: linear-gradient(160deg, #16161d 0%, #111116 100%);
+  border: 1px solid rgba(201,168,76,.15);
+  box-shadow: 0 30px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(201,168,76,.08);
+}
+.modal-top {
+  background: linear-gradient(90deg, rgba(201,168,76,.05), transparent);
+  border-bottom: 1px solid rgba(201,168,76,.1);
+}
+.modal-top h3 {
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--white), var(--gold3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.specs-grid {
+  border: 1px solid rgba(255,255,255,.05);
+}
+.spec-row:nth-child(odd) {
+  background: rgba(255,255,255,.02);
+}
+.spec-row:hover {
+  background: rgba(201,168,76,.04);
+}
+.act-wa {
+  background: linear-gradient(135deg, #25d366, #1db954);
+  box-shadow: 0 4px 15px rgba(37,211,102,.25);
+  transition: var(--transition-smooth);
+}
+.act-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37,211,102,.35);
+  opacity: 1 !important;
+}
+.act-call {
+  transition: var(--transition-smooth);
+}
+.act-call:hover {
+  background: rgba(201,168,76,.08);
+  border-color: var(--gold);
+  color: var(--gold2);
+  transform: translateY(-2px);
+}
+
+/* ======= HEADER UPGRADE ======= */
+header {
+  background: rgba(10,10,12,.95);
+  border-bottom: 1px solid rgba(201,168,76,.1);
+  box-shadow: 0 4px 30px rgba(0,0,0,.4);
+}
+.logo-mark {
+  box-shadow: 0 4px 20px rgba(201,168,76,.4), 0 0 0 1px rgba(201,168,76,.2);
+  transition: var(--transition-smooth);
+}
+.logo-mark:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+.btn-wa {
+  background: linear-gradient(135deg, #25d366, #1db954);
+  box-shadow: 0 4px 15px rgba(37,211,102,.2);
+  transition: var(--transition-smooth);
+}
+.btn-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37,211,102,.3);
+}
+
+/* ======= CARD STAGGER ANIMATION ======= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ======= EMPTY STATE ======= */
+.empty-state .empty-icon {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ======= SECTION TITLE ======= */
+.section-title {
+  background: linear-gradient(135deg, var(--white) 0%, var(--gold3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ======= FOOTER UPGRADE ======= */
+footer {
+  background: linear-gradient(180deg, var(--bg) 0%, #080809 100%);
+}
+.footer-logo {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.3rem;
+}
+
+/* ======= OVERLAY UPGRADE ======= */
+.overlay {
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(12px);
+}
+
+/* ======= PRODUCT GRID RESPONSIVE ======= */
+.product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .product-grid,
+  .company-block-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+/* ===== QUICK SECTIONS ===== */
+.quick-sections{
+  display:flex;
+  gap:10px;
+  padding: 0 2rem 1.5rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.quick-btn{
+  border:none;
+  background:#1f1f26;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:30px;
+  cursor:pointer;
+  font-family:'Cairo',sans-serif;
+  transition:.2s;
+}
+
+.quick-btn:hover{
+  background:#2a2a33;
+}
+
+.quick-btn.active{
+  background:var(--gold);
+  color:#000;
+  font-weight:700;
+}
+
+/* ===== FLOATING WHATSAPP ===== */
+.floating-wa{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 8px 25px rgba(37,211,102,.35);
+  transition: .2s;
+}
+
+.floating-wa:hover{
+  transform: scale(1.08);
+}
+
+.product-emoji { font-size: 3.2rem; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,.3)); }
+.company-block { grid-column: 1 / -1; margin-bottom: 1.5rem; }
+.company-block-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1rem; padding-bottom: .75rem;
+  border-bottom: 1px solid var(--border);
+}
+.company-block-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--co, var(--gold));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--co, var(--gold)) 60%, transparent);
+}
+.company-block-title { font-size: 1.1rem; font-weight: 800; color: var(--white); flex: 1; }
+.company-block-count {
+  font-size: 11px; color: var(--muted2);
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 4px 12px; border-radius: 20px;
+}
+.company-block-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.product-grid--grouped {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.quick-sections { flex-wrap: wrap; justify-content: center; }
+.quick-btn { font-family: 'Cairo', sans-serif; }
+.product-image img {
+  object-fit: contain;
+  padding: 8px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-mark">🪥</div>
+    <div class="logo-text-wrap">
+      <div class="logo-main">مكة للأدوات الصحية</div>
+      <div class="logo-sub">كتالوج التشطيب</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="tel:01552079581" class="btn-call">📞 01552079581</a>
+    <a href="https://wa.me/201552079581" target="_blank" class="btn-wa">
+      <span>💬</span> واتساب
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">✨ كتالوج التشطيب الحديث</div>
+  <h1>أدوات <em>تشطيب</em> فاخرة<br>في مكان واحد</h1>
+  <p>أدوات صحية — قواعد — أحواض — بيديه — بانيو<br>اتفرج على المنتجات وتواصل معنا على طول</p>
+  <div class="hero-stats">
+    <div class="stat-block">
+      <div class="stat-num" id="totalCount">0</div>
+      <div class="stat-lbl">منتج للتشطيب</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">أقسام</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">ماركات</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="quick-sections">
+  <button type="button" class="quick-btn active" data-quick="all" onclick="applyQuickFilter('all')">🏪 الكل</button>
+  <button type="button" class="quick-btn" data-quick="new" onclick="applyQuickFilter('new')">✨ الجديد</button>
+  <button type="button" class="quick-btn" data-quick="qaaeda" onclick="applyQuickFilter('qaaeda')">🚽 قواعد</button>
+  <button type="button" class="quick-btn" data-quick="basins" onclick="applyQuickFilter('basins')">🪣 أحواض</button>
+</div>
+
+
+<!-- MOBILE CATEGORIES -->
+<nav class="mobile-cats" id="mobileCatBar" aria-label="التصنيفات"></nav>
+
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" type="text" id="searchInput" placeholder="ابحث عن منتج... مثلاً: قاعدة معلقة، حوض كونتر، بيديه">
+  </div>
+  <select class="brand-filter" id="brandFilter">
+    <option value="">كل الشركات</option>
+    <option>ليسكو</option>
+    <option>كليوباترا</option>
+    <option>بليزا</option>
+    <option>سان بيور</option>
+  </select>
+</div>
+
+<!-- LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-label">التصنيفات</div>
+    <div id="catList"></div>
+    <div class="company-section">
+      <span class="company-label">الشركة</span>
+      <div id="companyList"></div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="content-header">
+      <h2 class="section-title" id="sectionTitle">كل منتجات التشطيب</h2>
+      <div class="results-pill" id="countPill">…</div>
+    </div>
+    <div class="sub-tabs" id="subTabs"></div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-top">
+      <h3 id="modalTitle"></h3>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-content">
+      <div id="modalImgSection"></div>
+      <div class="specs-grid" id="specsGrid"></div>
+    </div>
+    <div class="modal-actions">
+      <a class="act-wa" id="modalWa" href="#" target="_blank">💬 تواصل للطلب</a>
+      <a class="act-call" href="tel:01552079581">📞 اتصل بينا</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">مكة للأدوات الصحية</div>
+  <div class="footer-divider"></div>
+  <div class="footer-tagline">متخصصون في أدوات التشطيب الفاخرة — أدوات صحية — قواعد — أحواض — بيديه<br>للاستفسار والطلبات على واتساب أو اتصال: <strong style="color:var(--gold2)">01552079581</strong></div>
+</footer>
+
+<script>
+const PHONE = "201552079581";
+const IMG_BASE = "./";
+
+const IMG_PATHS = {
+  "lisco_q01": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(1).jpeg",
+  "lisco_q02": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(2).jpeg",
+  "lisco_q03": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(3).jpeg",
+  "lisco_q04": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(4).jpeg",
+  "lisco_q05": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(5).jpeg",
+  "lisco_q06": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(6).jpeg",
+  "lisco_q07": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(7).jpeg",
+  "lisco_q08": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(8).jpeg",
+  "lisco_q09": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(9).jpeg",
+  "lisco_q10": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(10).jpeg",
+  "lisco_q11": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(11).jpeg",
+  "lisco_q12": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(12).jpeg",
+  "lisco_q13": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(13).jpeg",
+  "lisco_q14": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(14).jpeg",
+  "lisco_h01": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(15).jpeg",
+  "lisco_h02": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(18).jpeg",
+  "lisco_h03": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(19).jpeg",
+  "lisco_h04": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(20).jpeg",
+  "lisco_h05": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(21).jpeg",
+  "lisco_h06": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(22).jpeg",
+  "lisco_h07": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(23).jpeg",
+  "lisco_h08": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(24).jpeg",
+  "lisco_h09": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(25).jpeg",
+  "lisco_h10": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM.jpeg",
+  "cleo1": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012304.png",
+  "cleo2": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012326.png",
+  "cleo3": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012354.png",
+  "cleo4": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012412.png",
+  "cleo5": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012453.png",
+  "cleo6": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012511.png",
+  "cleo7": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012525.png",
+  "cleo8": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012538.png",
+  "blz1": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM.jpeg",
+  "blz2": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM.jpeg",
+  "blz3": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM.jpeg",
+  "blz4": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(1).jpeg",
+  "blz5": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(1).jpeg",
+  "blz6": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(1).jpeg",
+  "blz7": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(2).jpeg",
+  "blz8": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(2).jpeg",
+  "sp1": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Titan-Close-Coupled-1000x808.jpg",
+  "sp2": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Wall-Mounted-1000x808.jpg",
+  "sp3": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/flip-2-1000x808.jpg",
+  "sp4": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Main%20shot%20calacatta-1000x808.jpg",
+  "sp5": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Pedestal-1000x808.jpg",
+  "sp6": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Lynx%20Rect-1000x808.jpg",
+  "sp7": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Vega%20-%20Toilet%20and%20Bidet-1000x808.png",
+  "sp8": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Half%20pes-1000x808.png"
+};
+
+function resolveImgPath(relativePath) {
+  if (!relativePath) return null;
+  try {
+    const decoded = decodeURIComponent(relativePath);
+    return IMG_BASE + decoded.split("/").map(seg => encodeURIComponent(seg)).join("/");
+  } catch {
+    return IMG_BASE + relativePath;
+  }
+}
+
+function getImgSrc(key) {
+  return key && IMG_PATHS[key] ? resolveImgPath(IMG_PATHS[key]) : null;
+}
+
+function imgFallback(el, emoji) {
+  const span = document.createElement("span");
+  span.className = el.classList.contains("modal-product-img") ? "modal-emoji" : "product-emoji";
+  span.textContent = emoji || "🛁";
+  el.replaceWith(span);
+}
+
+/* ===== COMPANIES ===== */
+const companies = [
+  { id: "all",       name: "كل الشركات", color: "#c9a84c" },
+  { id: "ليسكو",     name: "ليسكو",       color: "#3b82f6" },
+  { id: "كليوباترا", name: "كليوباترا",   color: "#8b5cf6" },
+  { id: "بليزا",     name: "بليزا",       color: "#ec4899" },
+  { id: "سان بيور",  name: "سان بيور",    color: "#06b6d4" },
+];
+
+
+/* ===== DATA ===== */
+const categories = [
+  { id: "all",      name: "كل المنتجات", icon: "🏪" },
+  { id: "sanitary", name: "أدوات صحية",  icon: "🚽" },
+];
+
+
+const subcats = {
+  sanitary: ["الكل","قاعده","أحواض","بيديه","بانيو","يورينال"],
+};
+
+
+const products = [
+  // ═══════════════ ليسكو — قواعد ═══════════════
+  {id:"lisco_q01", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q01", icon:"🚽",
+   name:"قاعدة معلقة مودرن", tags:["معلق","مودرن"], isNew:true,
+   specs:{النوع:"معلق Wall-Hung",اللون:"أبيض",الضمان:"سنتان"}},
+
+  {id:"lisco_q02", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q02", icon:"🚽",
+   name:"قاعدة أرضية + حوض عمود — طقم", tags:["أرضي","طقم"], isNew:true,
+   specs:{النوع:"طقم أرضي + حوض عمود",اللون:"أبيض فاخر"}},
+
+  {id:"lisco_q03", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q03", icon:"🚽",
+   name:"قاعدة أرضية مودرن + حوض عمود", tags:["أرضي","طقم"], isNew:true,
+   specs:{النوع:"طقم أرضي مودرن",اللون:"أبيض"}},
+
+  {id:"lisco_q04", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q04", icon:"🚽",
+   name:"قاعدة ذوي الاحتياجات مع حوض", tags:["ذوي احتياجات","حوض حائطي"],
+   specs:{النوع:"Accessible",الإضافات:"بارات مساعدة"}},
+
+  {id:"lisco_q05", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q05", icon:"🚽",
+   name:"قاعدة أرضية + حوض جانبي معلق", tags:["أرضي","حوض جانبي"],
+   specs:{النوع:"أرضي",الحوض:"جانبي معلق"}},
+
+  {id:"lisco_q06", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q06", icon:"🚽",
+   name:"قاعدة Back-to-Wall", tags:["أرضي","خزان مخفي"],
+   specs:{النوع:"Back-to-Wall",الخزان:"مخفي"}},
+
+  {id:"lisco_q07", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q07", icon:"🚽",
+   name:"قاعدة مربعة مودرن مع خزان", tags:["مربع","خزان علوي"], isNew:true,
+   specs:{النوع:"أرضي مربع",الخزان:"علوي"}},
+
+  {id:"lisco_q08", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q08", icon:"🚽",
+   name:"قاعدة ركنية كلاسيك", tags:["ركن","كلاسيك"],
+   specs:{النوع:"ركن",الخزان:"علوي"}},
+
+  {id:"lisco_q09", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q09", icon:"🚽",
+   name:"قاعدة معلقة مربعة أبيض", tags:["معلق","مربع"], isNew:true,
+   specs:{النوع:"Wall-Hung",الشكل:"مربع"}},
+
+  {id:"lisco_q10", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q10", icon:"🚽",
+   name:"قاعدة أرضية كلاسيك", tags:["أرضي","كلاسيك"],
+   specs:{النوع:"Close-Coupled",اللون:"أبيض"}},
+
+  {id:"lisco_q11", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q11", icon:"🚽",
+   name:"قاعدة بخزان عالي", tags:["خزان عالي"],
+   specs:{النوع:"أرضي",الخزان:"علوي"}},
+
+  {id:"lisco_q12", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q12", icon:"🚽",
+   name:"قاعدة بخزان حائطي منفصل", tags:["خزان منفصل"],
+   specs:{النوع:"خزان حائطي",الاتصال:"منفصل"}},
+
+  {id:"lisco_q13", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q13", icon:"🚽",
+   name:"قاعدة خزان علوي مرتفع", tags:["خزان مرتفع"],
+   specs:{النوع:"أرضي + خزان عالي"}},
+
+  {id:"lisco_q14", company:"ليسكو", cat:"sanitary", sub:"قاعده", img:"lisco_q14", icon:"🚽",
+   name:"قاعدة ذوي الاحتياجات", tags:["ذوي احتياجات","Accessible"],
+   specs:{الإضافات:"بارات ستانلس"}},
+
+  // ═══════════════ ليسكو — أحواض ═══════════════
+  {id:"lisco_h01", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h01", icon:"🪣",
+   name:"حوض كونتر توب مستطيل", tags:["كونتر","مستطيل"], isNew:true,
+   specs:{النوع:"Counter-Top",الشكل:"مستطيل"}},
+
+  {id:"lisco_h02", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h02", icon:"🪣",
+   name:"حوض فيسيل بيضاوي", tags:["فيسيل","بيضاوي"],
+   specs:{النوع:"Vessel",الشكل:"بيضاوي"}},
+
+  {id:"lisco_h03", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h03", icon:"🪣",
+   name:"حوض عمود كامل", tags:["عمود","كامل"],
+   specs:{النوع:"Full Pedestal"}},
+
+  {id:"lisco_h04", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h04", icon:"🪣",
+   name:"حوض أندرماونت مستطيل", tags:["أندرماونت"],
+   specs:{النوع:"Undermount"}},
+
+  {id:"lisco_h05", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h05", icon:"🪣",
+   name:"حوض نصف عمود معلق", tags:["نصف عمود","معلق"],
+   specs:{النوع:"Semi-Pedestal"}},
+
+  {id:"lisco_h06", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h06", icon:"🪣",
+   name:"حوض معلق صغير", tags:["معلق","صغير"],
+   specs:{النوع:"Wall-Hung Small"}},
+
+  {id:"lisco_h07", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h07", icon:"🪣",
+   name:"وحدة حوض مع كابينة خشب", tags:["وحدة","كابينة"], isNew:true,
+   specs:{النوع:"Vanity Unit"}},
+
+  {id:"lisco_h08", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h08", icon:"🪣",
+   name:"حوض ركني معلق", tags:["ركن","معلق"],
+   specs:{النوع:"Corner Wall-Hung"}},
+
+  {id:"lisco_h09", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h09", icon:"🪣",
+   name:"حوض على وحدة خشب فاتح", tags:["وحدة","خشب"], isNew:true,
+   specs:{النوع:"Vanity Top"}},
+
+  {id:"lisco_h10", company:"ليسكو", cat:"sanitary", sub:"أحواض", img:"lisco_h10", icon:"🪣",
+   name:"حوض فيسيل مربع أسود مطفي", tags:["فيسيل","أسود"], isNew:true,
+   specs:{النوع:"Vessel",اللون:"أسود مطفي"}},
+
+  {id:"lisco_b01", company:"ليسكو", cat:"sanitary", sub:"بيديه", icon:"🚿",
+   name:"بيديه أرضي عمود", tags:["بيديه","أرضي"],
+   specs:{النوع:"Pedestal Bidet"}},
+
+  {id:"lisco_b02", company:"ليسكو", cat:"sanitary", sub:"بانيو", icon:"🛁",
+   name:"بانيو أكريليك 170×75", tags:["170×75","مستطيل"],
+   specs:{المقاس:"170×75 سم"}},
+
+  {id:"lisco_b03", company:"ليسكو", cat:"sanitary", sub:"بانيو", icon:"🛁",
+   name:"بانيو ركن 140×140", tags:["ركن","140×140"],
+   specs:{المقاس:"140×140 سم"}},
+
+  {id:"lisco_u01", company:"ليسكو", cat:"sanitary", sub:"يورينال", icon:"🚻",
+   name:"يورينال حائطي", tags:["حائطي"],
+   specs:{النوع:"Wall-Hung Urinal"}},
+
+  // ═══════════════ كليوباترا ═══════════════
+  {id:"cleo1", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo1", icon:"🚽", isNew:true,
+   name:"قاعدة أرضية بريما", tags:["أرضي","بريما"],
+   specs:{الموديل:"Prima",الضمان:"5 سنوات"}},
+
+  {id:"cleo2", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo2", icon:"🚽", isNew:true,
+   name:"قاعدة معلقة ألترا", tags:["معلق","ألترا"],
+   specs:{الموديل:"Ultra",الضمان:"5 سنوات"}},
+
+  {id:"cleo3", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo3", icon:"🚽",
+   name:"قاعدة كومباكت", tags:["كومباكت","توفير مياه"],
+   specs:{الخزان:"دبل فلاش 3/6 لتر"}},
+
+  {id:"cleo4", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo4", icon:"🪣", isNew:true,
+   name:"حوض كاونتر فوق الرخام", tags:["كونتر","فاخر"],
+   specs:{المقاس:"55×42 سم"}},
+
+  {id:"cleo5", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo5", icon:"🪣",
+   name:"حوض نصف عمود", tags:["نصف عمود","45سم"],
+   specs:{الطول:"45 سم"}},
+
+  {id:"cleo6", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo6", icon:"🪣",
+   name:"حوض عمود كامل", tags:["عمود كامل"],
+   specs:{الطول:"62 سم"}},
+
+  {id:"cleo7", company:"كليوباترا", cat:"sanitary", sub:"بيديه", img:"cleo7", icon:"🚿", isNew:true,
+   name:"بيديه أرضي", tags:["بيديه","أرضي"],
+   specs:{ملاحظة:"مطابق لكولكشن Prima"}},
+
+  {id:"cleo8", company:"كليوباترا", cat:"sanitary", sub:"بيديه", img:"cleo8", icon:"🚿",
+   name:"بيديه معلق", tags:["معلق"],
+   specs:{ملاحظة:"مطابق لكولكشن Ultra"}},
+
+  // ═══════════════ بليزا ═══════════════
+  {id:"blz1", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz1", icon:"🚽", isNew:true,
+   name:"قاعدة أرضية Pickly", tags:["أرضي","Pickly"],
+   specs:{السلسلة:"Pickly Mono block"}},
+
+  {id:"blz2", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz2", icon:"🚽", isNew:true,
+   name:"قاعدة معلقة Slim", tags:["معلق","Slim"],
+   specs:{النوع:"Wall-Hung"}},
+
+  {id:"blz3", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz3", icon:"🚽",
+   name:"قاعدة كومباكت Dual Flush", tags:["كومباكت","توفير مياه"],
+   specs:{الخزان:"Dual Flush"}},
+
+  {id:"blz4", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz4", icon:"🪣", isNew:true,
+   name:"حوض كاونتر Round", tags:["كونتر","دائري"],
+   specs:{الشكل:"Round"}},
+
+  {id:"blz5", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz5", icon:"🪣",
+   name:"حوض نصف عمود", tags:["نصف عمود"],
+   specs:{الطول:"45 سم"}},
+
+  {id:"blz6", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz6", icon:"🪣",
+   name:"حوض عمود كامل", tags:["عمود كامل"],
+   specs:{الطول:"63 سم"}},
+
+  {id:"blz7", company:"بليزا", cat:"sanitary", sub:"بيديه", img:"blz7", icon:"🚿", isNew:true,
+   name:"بيديه أرضي", tags:["بيديه","أرضي"],
+   specs:{النوع:"Floor-Mounted"}},
+
+  {id:"blz8", company:"بليزا", cat:"sanitary", sub:"بيديه", img:"blz8", icon:"🚿",
+   name:"بيديه معلق", tags:["معلق"],
+   specs:{النوع:"Wall-Hung"}},
+
+  // ═══════════════ سان بيور ═══════════════
+  {id:"sp1", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp1", icon:"🚽", isNew:true,
+   name:"قاعدة Titan Close Coupled", tags:["Titan","أرضي"],
+   specs:{السلسلة:"Titan"}},
+
+  {id:"sp2", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp2", icon:"🚽", isNew:true,
+   name:"قاعدة Kepler معلقة", tags:["Kepler","معلق"],
+   specs:{النوع:"Wall-Mounted"}},
+
+  {id:"sp3", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp3", icon:"🚽",
+   name:"قاعدة Flip كومباكت", tags:["Flip","كومباكت"],
+   specs:{النوع:"Compact"}},
+
+  {id:"sp4", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp4", icon:"🪣", isNew:true,
+   name:"حوض Calacatta كاونتر", tags:["Calacatta","فاخر"],
+   specs:{النوع:"Counter-Top"}},
+
+  {id:"sp5", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp5", icon:"🪣",
+   name:"حوض Kepler عمود", tags:["Kepler","عمود"],
+   specs:{النوع:"Pedestal"}},
+
+  {id:"sp6", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp6", icon:"🪣",
+   name:"حوض Lynx مستطيل", tags:["Lynx","مستطيل"],
+   specs:{الشكل:"مستطيل"}},
+
+  {id:"sp7", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp7", icon:"🚿", isNew:true,
+   name:"طقم قاعدة وبيديه Vega", tags:["Vega","طقم"],
+   specs:{النوع:"Toilet + Bidet Set"}},
+
+  {id:"sp8", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp8", icon:"🚿",
+   name:"بيديه Half Pedestal", tags:["Half","معلق"],
+   specs:{النوع:"Semi-Pedestal Bidet"}},
+];
+
+
+/* ===== STATE ===== */
+let activeCat     = "all";
+let activeSub     = "الكل";
+let activeCompany = "all";
+let searchQ       = "";
+
+function getCompanyColor(id) {
+  const c = companies.find(x => x.id === id);
+  return c ? c.color : "#c9a84c";
+}
+
+/* ===== BUILD MOBILE CATS ===== */
+function buildMobileCats() {
+  const bar = document.getElementById("mobileCatBar");
+  if (!bar) return;
+  const subs = activeCat !== "all" && subcats[activeCat] ? subcats[activeCat] : [];
+  const catBtns = categories.map(c => `
+    <button type="button" class="mobile-cat-btn ${c.id === activeCat ? "active" : ""}"
+            onclick="setCat('${c.id}')">${c.icon} ${c.name}</button>`).join("");
+  const subBtns = subs.length ? subs.map(s => `
+    <button type="button" class="mobile-cat-btn ${s === activeSub ? "active" : ""}"
+            onclick="setSub('${s}')">${s}</button>`).join("") : "";
+  bar.innerHTML = catBtns + subBtns;
+}
+
+/* ===== BUILD SIDEBAR ===== */
+function buildSidebar() {
+  const el = document.getElementById("catList");
+  el.innerHTML = categories.map(c => {
+    const cnt = c.id === "all" ? products.length
+      : products.filter(p => p.cat === c.id).length;
+    return `
+      <button class="cat-btn ${c.id === activeCat ? 'active' : ''}"
+              onclick="setCat('${c.id}')">
+        <span class="cat-icon">${c.icon}</span>
+        <span class="cat-name">${c.name}</span>
+        <span class="cat-cnt">${cnt}</span>
+      </button>`;
+  }).join("");
+}
+
+/* ===== BUILD COMPANY LIST ===== */
+function buildCompanyList() {
+  const el = document.getElementById("companyList");
+  el.innerHTML = companies.map(c => {
+    if (c.soon) {
+      return `
+        <div class="company-btn" style="opacity:0.4;cursor:default;pointer-events:none">
+          <span class="company-dot" style="background:${c.color}"></span>
+          <span style="flex:1">${c.name}</span>
+          <span style="font-size:9px;color:var(--muted);background:var(--surface);padding:2px 6px;border-radius:8px">قريباً</span>
+        </div>`;
+    }
+    const cnt = c.id === "all" ? products.length
+      : products.filter(p => p.company === c.id).length;
+    if (c.id !== "all" && cnt === 0) return "";
+    return `
+      <button class="company-btn ${c.id === activeCompany ? 'active' : ''}"
+              onclick="setCompany('${c.id}')">
+        <span class="company-dot" style="background:${c.color}"></span>
+        <span style="flex:1">${c.name}</span>
+        <span class="company-cnt">${cnt}</span>
+      </button>`;
+  }).join("");
+}
+
+/* ===== BUILD SUB TABS ===== */
+function buildSubTabs() {
+  const el = document.getElementById("subTabs");
+  const subs = subcats[activeCat];
+  if (!subs) { el.innerHTML = ""; return; }
+  el.innerHTML = subs.map(s => `
+    <button class="sub-tab ${s === activeSub ? 'active' : ''}"
+            onclick="setSub('${s}')">${s}</button>
+  `).join("");
+}
+
+/* ===== FILTER ===== */
+function getFiltered() {
+  return products.filter(p => {
+    if (activeQuick === "new" && !p.isNew) return false;
+    if (activeCat !== "all" && p.cat !== activeCat) return false;
+    if (activeSub && activeSub !== "الكل" && p.sub !== activeSub) return false;
+    if (activeCompany !== "all" && p.company !== activeCompany) return false;
+    if (searchQ) {
+      const q = searchQ.toLowerCase();
+      return p.name.includes(searchQ)
+        || (p.tags || []).some(t => t.includes(searchQ))
+        || (p.company || "").toLowerCase().includes(q);
+    }
+    return true;
+  });
+}
+
+/* ===== RENDER PRODUCTS ===== */
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  const list = getFiltered();
+
+  document.getElementById("countPill").textContent = `${list.length} منتج`;
+  const cat = categories.find(c => c.id === activeCat);
+  document.getElementById("sectionTitle").textContent = cat ? cat.name : "كل المنتجات";
+
+  if (!list.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <p>مفيش منتجات مطابقة للبحث</p>
+      </div>`;
+    return;
+  }
+
+  const showGroups = activeCat === "all" && activeCompany === "all" && !searchQ && (!activeQuick || activeQuick === "all");
+  const cardHtml = (p, i) => {
+    const highlightTags = (p.tags || []).slice(0, 1);
+    const restTags = (p.tags || []).slice(1, 3);
+    const src = getImgSrc(p.img);
+    const safeIcon = (p.icon || "🛁").replace(/'/g, "\\'");
+    const imgHtml = src
+      ? `<img src="${src}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this,'${safeIcon}')">`
+      : `<span class="product-emoji">${p.icon || "🛁"}</span>`;
+    const compColor = getCompanyColor(p.company);
+    return `
+      <div class="product-card" style="animation-delay:${i * 25}ms"
+           onclick="openModal('${p.id}')">
+        ${p.isNew ? '<div class="badge-new">جديد</div>' : ''}
+        <div class="product-image">
+          ${imgHtml}
+          <div class="product-company-badge" style="border-color:${compColor}55;color:${compColor}">${p.company || ""}</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">${p.name}</div>
+          <div class="product-tags">
+            ${highlightTags.map(t => `<span class="tag highlight">${t}</span>`).join("")}
+            ${restTags.map(t => `<span class="tag">${t}</span>`).join("")}
+          </div>
+          <div class="product-footer">
+            <span class="product-brand" style="color:${compColor}">${p.company || ""}</span>
+            <span class="stock-badge">✓ متاح</span>
+          </div>
+        </div>
+      </div>`;
+  };
+
+  if (!showGroups) {
+    grid.className = "product-grid";
+    grid.innerHTML = list.map(cardHtml).join("");
+    return;
+  }
+
+  grid.className = "product-grid product-grid--grouped";
+
+  const order = ["ليسكو", "كليوباترا", "بليزا", "سان بيور"];
+  const grouped = {};
+  list.forEach(p => {
+    const c = p.company || "أخرى";
+    if (!grouped[c]) grouped[c] = [];
+    grouped[c].push(p);
+  });
+
+  let idx = 0;
+  grid.innerHTML = order.filter(c => grouped[c]?.length).map(company => {
+    const items = grouped[company];
+    const color = getCompanyColor(company);
+    const cards = items.map(p => cardHtml(p, idx++)).join("");
+    return `
+      <section class="company-block">
+        <header class="company-block-head" style="--co:${color}">
+          <span class="company-block-dot"></span>
+          <h3 class="company-block-title">${company}</h3>
+          <span class="company-block-count">${items.length} منتج</span>
+        </header>
+        <div class="company-block-grid">${cards}</div>
+      </section>`;
+  }).join("");
+
+}
+
+/* ===== EVENTS ===== */
+let activeQuick = "all";
+
+function applyQuickFilter(mode) {
+  activeQuick = mode;
+  document.querySelectorAll(".quick-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.quick === mode);
+  });
+  searchQ = "";
+  const si = document.getElementById("searchInput");
+  if (si) si.value = "";
+  activeCat = "sanitary";
+  activeCompany = "all";
+  if (mode === "qaaeda") activeSub = "قاعده";
+  else if (mode === "basins") activeSub = "أحواض";
+  else if (mode === "new") { activeCat = "all"; activeSub = "الكل"; }
+  else { activeCat = "all"; activeSub = "الكل"; }
+  buildSidebar();
+  buildMobileCats();
+  buildCompanyList();
+  buildSubTabs();
+  renderProducts();
+  window.scrollTo({ top: 220, behavior: "smooth" });
+}
+
+function setCat(id) {
+  activeQuick = "";
+  document.querySelectorAll(".quick-btn").forEach(b => b.classList.remove("active"));
+  activeCat = id;
+  activeSub = "الكل";
+  buildSidebar();
+  buildMobileCats();
+  buildSubTabs();
+  renderProducts();
+  window.scrollTo({ top: 200, behavior: "smooth" });
+}
+
+function setSub(s) {
+  activeSub = s;
+  buildSubTabs();
+  buildMobileCats();
+  renderProducts();
+}
+
+function setCompany(id) {
+  activeCompany = id;
+  buildCompanyList();
+  renderProducts();
+}
+
+// Debounced search for performance
+let searchTimer;
+document.getElementById("searchInput").addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    searchQ = e.target.value.trim();
+    if (searchQ) {
+      activeCat = "all";
+      activeSub = "الكل";
+      buildSidebar();
+      buildMobileCats();
+      buildSubTabs();
+    }
+    renderProducts();
+  }, 120);
+});
+
+// Clear search on Escape
+document.getElementById("searchInput").addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    e.target.value = "";
+    searchQ = "";
+    renderProducts();
+  }
+});
+
+document.getElementById("brandFilter").addEventListener("change", e => {
+  const val = e.target.value;
+  activeCompany = val || "all";
+  buildCompanyList();
+  renderProducts();
+});
+
+/* ===== MODAL ===== */
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById("modalTitle").textContent = p.name;
+  
+  const imgSection = document.getElementById("modalImgSection");
+  const msrc = getImgSrc(p.img);
+  if (msrc) {
+    const safeIcon = (p.icon || "🛁").replace(/'/g, "\\'");
+    imgSection.innerHTML = `<img class="modal-product-img" src="${msrc}" alt="${p.name}" decoding="async" onerror="imgFallback(this,'${safeIcon}')">`;
+  } else {
+    imgSection.innerHTML = `<span class="modal-emoji">${p.icon}</span>`;
+  }
+
+  const specs = p.specs || {};
+  document.getElementById("specsGrid").innerHTML = Object.entries(specs).map(([k, v]) => `
+    <div class="spec-row">
+      <span class="spec-key">${k.replace(/_/g, " ")}</span>
+      <span class="spec-val">${v}</span>
+    </div>
+  `).join("");
+
+  // Build detailed WhatsApp message with specs
+  const specLines = Object.entries(p.specs || {}).map(([k,v]) => `• ${k}: ${v}`).join('\n');
+  const msgText = `مرحبا 👋، عايز أسأل عن المنتج ده:
+
+🔹 *${p.name}*
+🏢 الشركة: ${p.company || ""}
+
+📋 *التفاصيل:*
+${specLines}
+
+من كتالوج مكة للأدوات الصحية`;
+  const msg = encodeURIComponent(msgText);
+  document.getElementById("modalWa").href = `https://wa.me/${PHONE}?text=${msg}`;
+  document.getElementById("overlay").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("overlay").classList.remove("open");
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById("overlay")) closeModal();
+}
+
+/* ===== INIT ===== */
+document.getElementById("totalCount").textContent = "+" + products.length;
+buildSidebar();
+buildMobileCats();
+buildCompanyList();
+buildSubTabs();
+renderProducts();
+</script>
+
+
+<a href="https://wa.me/201552079581" class="floating-wa" target="_blank">
+  💬
+</a>
+
+</body>
+</html>
