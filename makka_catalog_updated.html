@@ -1463,17 +1463,29 @@ function getImgSrc(key) {
   return key && IMG_PATHS[key] ? resolveImgPath(IMG_PATHS[key]) : null;
 }
 
+function getAbsoluteImgSrc(key) {
+  const rel = getImgSrc(key);
+  if (!rel) return null;
+  try {
+    return new URL(rel, window.location.href).href;
+  } catch {
+    return null;
+  }
+}
+
 let modalProduct = null;
 
 function buildWhatsAppMessage(p) {
   const specLines = Object.entries(p.specs || {}).map(([k, v]) => `• ${k}: ${v}`).join("\n");
+  const imgUrl = getAbsoluteImgSrc(p.img);
+  const imgLine = imgUrl ? `\n${imgUrl}` : "";
   return `مرحبا 👋، عايز أسأل عن المنتج ده:
 
 🔹 *${p.name}*
 🏢 الشركة: ${p.company || ""}
 
 📋 *التفاصيل:*
-${specLines}
+${specLines}${imgLine}
 
 من كتالوج مكة للأدوات الصحية`;
 }
