@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -123,11 +123,78 @@ header {
   align-items: center;
   gap: 6px;
   color: var(--gold2);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   direction: ltr;
+}
+
+.contact-picker { position: relative; }
+.btn-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.btn-picker-call {
+  background: var(--surface);
+  color: var(--gold2);
+  border: 1px solid var(--border2);
+  padding: 9px 16px;
+  border-radius: 30px;
+  transition: var(--transition-smooth);
+}
+.btn-picker-call:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,.08);
+}
+.contact-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 200px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 6px;
+  z-index: 800;
+  box-shadow: 0 16px 48px rgba(0,0,0,.55);
+}
+.contact-picker.open .contact-menu { display: block; }
+.contact-menu a,
+.contact-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  direction: ltr;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: background .15s;
+}
+.contact-menu a:hover,
+.contact-menu button:hover { background: rgba(201,168,76,.1); }
+.contact-menu .menu-icon { font-size: 16px; flex-shrink: 0; }
+.contact-menu-up {
+  top: auto;
+  bottom: calc(100% + 10px);
 }
 
 /* ========= HERO ========= */
@@ -717,8 +784,8 @@ footer {
   .logo-text-wrap .logo-main { font-size: 14px; }
   .logo-text-wrap .logo-sub { font-size: 9px; letter-spacing: 1px; }
   .logo-mark { width: 36px; height: 36px; font-size: 18px; }
-  .btn-wa { padding: 8px 14px; font-size: 12px; }
-  .btn-call { display: none; }
+  .btn-wa, .btn-picker { padding: 8px 14px; font-size: 12px; }
+  .contact-menu { left: auto; right: 0; min-width: 185px; }
 
   .hero {
     padding: 2rem 1rem 1.25rem;
@@ -1235,6 +1302,37 @@ footer {
 .floating-wa:hover{
   transform: scale(1.08);
 }
+.floating-contact {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+.floating-contact .floating-wa {
+  position: relative;
+  bottom: auto;
+  left: auto;
+}
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+.modal-actions .contact-picker { flex: 1; }
+.modal-actions .btn-picker {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+}
+.modal-actions .act-call-style {
+  background: var(--surface);
+  color: var(--white);
+  border: 1px solid var(--border2);
+}
+.modal-actions .contact-menu {
+  left: 0;
+  right: 0;
+  min-width: 100%;
+}
 
 .product-emoji { font-size: 3.2rem; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,.3)); }
 .company-block { grid-column: 1 / -1; margin-bottom: 1.5rem; }
@@ -1288,10 +1386,20 @@ footer {
     </div>
   </div>
   <div class="header-actions">
-    <a href="tel:01552079581" class="btn-call">📞 01552079581</a>
-    <a href="https://wa.me/201552079581" target="_blank" class="btn-wa">
-      <span>💬</span> واتساب
-    </a>
+    <div class="contact-picker" id="headerCallPicker">
+      <button type="button" class="btn-picker btn-picker-call" onclick="toggleContactMenu('headerCallPicker', event)">📞 اتصل</button>
+      <div class="contact-menu">
+        <a href="tel:01552079581"><span class="menu-icon">📞</span> 01552079581</a>
+        <a href="tel:01026150859"><span class="menu-icon">📞</span> 01026150859</a>
+      </div>
+    </div>
+    <div class="contact-picker" id="headerWaPicker">
+      <button type="button" class="btn-picker btn-wa" onclick="toggleContactMenu('headerWaPicker', event)">💬 واتساب</button>
+      <div class="contact-menu">
+        <a href="https://wa.me/201552079581" target="_blank"><span class="menu-icon">💬</span> 01552079581</a>
+        <a href="https://wa.me/201026150859" target="_blank"><span class="menu-icon">💬</span> 01026150859</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -1300,7 +1408,7 @@ footer {
   <div class="hero-glow"></div>
   <div class="hero-eyebrow">✨ كتالوج التشطيب الحديث</div>
   <h1>أدوات <em>تشطيب</em> فاخرة<br>في مكان واحد</h1>
-  <p>أدوات صحية — قواعد — أحواض — بيديه — بانيو<br>اتفرج على المنتجات وتواصل معنا على طول</p>
+  <p>أدوات صحية — قواعد — أحواض — بانيو<br>اتفرج على المنتجات وتواصل معنا على طول</p>
   <div class="hero-stats">
     <div class="stat-block">
       <div class="stat-num" id="totalCount">0</div>
@@ -1311,7 +1419,7 @@ footer {
       <div class="stat-lbl">أقسام</div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">4</div>
+      <div class="stat-num">5</div>
       <div class="stat-lbl">ماركات</div>
     </div>
   </div>
@@ -1341,6 +1449,7 @@ footer {
     <option>كليوباترا</option>
     <option>بليزا</option>
     <option>سان بيور</option>
+    <option>اينوفا</option>
   </select>
 </div>
 
@@ -1380,9 +1489,18 @@ footer {
       <div id="modalImgSection"></div>
       <div class="specs-grid" id="specsGrid"></div>
     </div>
-    <div class="modal-actions">
-      <a class="act-wa" id="modalWa" href="#" onclick="return sendWhatsAppInquiry(event)">💬 تواصل للطلب</a>
-      <a class="act-call" href="tel:01552079581">📞 اتصل بينا</a>
+    <div class="modal-actions" onclick="event.stopPropagation()">
+      <div class="contact-picker" id="modalWaPicker">
+        <button type="button" class="btn-picker act-wa" onclick="toggleContactMenu('modalWaPicker', event)">💬 تواصل واتساب</button>
+        <div class="contact-menu" id="modalWaMenu"></div>
+      </div>
+      <div class="contact-picker" id="modalCallPicker">
+        <button type="button" class="btn-picker btn-picker-call act-call-style" onclick="toggleContactMenu('modalCallPicker', event)">📞 اتصال</button>
+        <div class="contact-menu">
+          <a href="tel:01552079581"><span class="menu-icon">📞</span> 01552079581</a>
+          <a href="tel:01026150859"><span class="menu-icon">📞</span> 01026150859</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1391,11 +1509,12 @@ footer {
 <footer>
   <div class="footer-logo">مكة للأدوات الصحية</div>
   <div class="footer-divider"></div>
-  <div class="footer-tagline">متخصصون في أدوات التشطيب الفاخرة — أدوات صحية — قواعد — أحواض — بيديه<br>للاستفسار والطلبات على واتساب أو اتصال: <strong style="color:var(--gold2)">01552079581</strong></div>
+  <div class="footer-tagline">متخصصون في أدوات التشطيب الفاخرة — أدوات صحية — قواعد — أحواض — بيديه<br>للاستفسار والطلبات: <strong style="color:var(--gold2)">01552079581</strong> — <strong style="color:var(--gold2)">01026150859</strong></div>
 </footer>
 
 <script>
 const PHONE = "201552079581";
+const PHONE2 = "201026150859";
 const IMG_BASE = "./";
 /* رابط الموقع المنشور — لروابط واتساب (مش file:// من الجهاز) */
 const PUBLIC_SITE = "https://moemenshendia0-tech.github.io/makka-catalog/";
@@ -1425,30 +1544,102 @@ const IMG_PATHS = {
   "lisco_h08": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(24).jpeg",
   "lisco_h09": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM%20(25).jpeg",
   "lisco_h10": "%D9%84%D9%8A%D8%B3%D9%83%D9%88/WhatsApp%20Image%202026-05-17%20at%2012.26.08%20AM.jpeg",
-  "cleo1": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012304.png",
-  "cleo2": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012326.png",
-  "cleo3": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012354.png",
-  "cleo4": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012412.png",
-  "cleo5": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012453.png",
-  "cleo6": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012511.png",
-  "cleo7": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012525.png",
-  "cleo8": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012538.png",
-  "blz1": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM.jpeg",
-  "blz2": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM.jpeg",
-  "blz3": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM.jpeg",
-  "blz4": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(1).jpeg",
-  "blz5": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(1).jpeg",
-  "blz6": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(1).jpeg",
-  "blz7": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(2).jpeg",
-  "blz8": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(2).jpeg",
-  "sp1": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Titan-Close-Coupled-1000x808.jpg",
-  "sp2": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Wall-Mounted-1000x808.jpg",
-  "sp3": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/flip-2-1000x808.jpg",
-  "sp4": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Main%20shot%20calacatta-1000x808.jpg",
-  "sp5": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Pedestal-1000x808.jpg",
-  "sp6": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Lynx%20Rect-1000x808.jpg",
-  "sp7": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Vega%20-%20Toilet%20and%20Bidet-1000x808.png",
-  "sp8": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Half%20pes-1000x808.png"
+  "cleo1": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/1.png",
+  "cleo2": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012304.png",
+  "cleo3": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012326.png",
+  "cleo4": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012354.png",
+  "cleo5": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012412.png",
+  "cleo6": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012453.png",
+  "cleo7": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012511.png",
+  "cleo8": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012525.png",
+  "cleo9": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012538.png",
+  "cleo10": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012700.png",
+  "cleo11": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012714.png",
+  "cleo12": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012725.png",
+  "cleo13": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012744.png",
+  "cleo14": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012759.png",
+  "cleo15": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012817.png",
+  "cleo16": "%D9%83%D9%8A%D9%84%D9%88%D8%A8%D8%A7%D8%AA%D8%B1%D8%A7/Screenshot%202026-05-17%20012833.png",
+  "blz1": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/O.jpg",
+  "blz2": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/OI.jpg",
+  "blz3": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/OIP.jpg",
+  "blz4": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/p%5Bp.jpg",
+  "blz5": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/Screenshot%202026-05-17%20155929.png",
+  "blz6": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/Screenshot%202026-05-17%20155956.png",
+  "blz7": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(1).jpeg",
+  "blz8": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(2).jpeg",
+  "blz9": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(3).jpeg",
+  "blz10": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM%20(4).jpeg",
+  "blz11": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.27%20PM.jpeg",
+  "blz12": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(1).jpeg",
+  "blz13": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(2).jpeg",
+  "blz14": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(3).jpeg",
+  "blz15": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(4).jpeg",
+  "blz16": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(5).jpeg",
+  "blz17": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(6).jpeg",
+  "blz18": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM%20(7).jpeg",
+  "blz19": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.28%20PM.jpeg",
+  "blz20": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(1).jpeg",
+  "blz21": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(2).jpeg",
+  "blz22": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(3).jpeg",
+  "blz23": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM%20(4).jpeg",
+  "blz24": "%D8%A8%D9%84%D9%8A%D8%B2%D8%A7/WhatsApp%20Image%202026-05-17%20at%204.08.29%20PM.jpeg",
+  "sp1": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Aden-1000x808.jpg",
+  "sp2": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Carmi-Antislip_Interactive-LightMix-1000x808.jpg",
+  "sp3": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/EGrace_Interactive%20LightMix-1000x808.jpg",
+  "sp4": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/EKapsel%20E_Interactive%20LightMix-1000x808.jpg",
+  "sp5": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Eros-1000x808.jpg",
+  "sp6": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Felis-1000x808.jpg",
+  "sp7": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/flip-2-1000x808.jpg",
+  "sp8": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/flute%20Edit-1000x808.jpg",
+  "sp9": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Half%20pes-1000x808.png",
+  "sp10": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Harmony1-1000x808.jpg",
+  "sp11": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Hydra-1000x808.jpg",
+  "sp12": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Icarus-1000x808.jpg",
+  "sp13": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Furniture-1000x808.jpg",
+  "sp14": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Pedestal-1000x808.jpg",
+  "sp15": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Kepler-Wall-Mounted-1000x808.jpg",
+  "sp16": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Lynx%20Rect-1000x808.jpg",
+  "sp17": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Lynx.jpg",
+  "sp18": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/MagnusBlck-1000x808.jpg",
+  "sp19": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/MagnusBlckToielt-1000x808.jpg",
+  "sp20": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Main%20shot%20calacatta-1000x808.jpg",
+  "sp21": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/newyork001F_Interactive%20LightMix-1000x808.jpg",
+  "sp22": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Oberon.jpg",
+  "sp23": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Oberon-1000x808.jpg",
+  "sp24": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Orion-1000x808.jpg",
+  "sp25": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/PavilionE_Interactive%20LightMix-1000x808.jpg",
+  "sp26": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Picasso%20W_Interactive%20LightMix-1000x808.jpg",
+  "sp27": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Saturn.jpg",
+  "sp28": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Saturn-1000x808.jpg",
+  "sp29": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20161123.png",
+  "sp30": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20161624.png",
+  "sp31": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20161641.png",
+  "sp32": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20161822.png",
+  "sp33": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20162252.png",
+  "sp34": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Screenshot%202026-05-17%20162401.png",
+  "sp35": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Semplice%201_Interactive%20LightMix-1000x808.jpg",
+  "sp36": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Simplice%20C%201e0_Interactive%20LightMix-1000x808.jpg",
+  "sp37": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Sirius-1000x808.jpg",
+  "sp38": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Soho%20M_Interactive%20LightMix-1000x808.jpg",
+  "sp39": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Titan%20AC-1000x808.jpg",
+  "sp40": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Titan-Close-Coupled-1000x808.jpg",
+  "sp41": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Titan-Furniture-1000x808.jpg",
+  "sp42": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Toilet%20calacatta-1000x808.jpg",
+  "sp43": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Vega%20-%20Toilet%20and%20Bidet-1000x808.png",
+  "sp44": "%D8%B3%D8%A7%D9%86%20%D8%A8%D9%8A%D9%88%D8%B1/Venus-1000x808.jpg",
+  "inv1": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/036df3c4edcdf805aedba76b79e56670.jpg",
+  "inv2": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/0ab7e8ccc4d5ce0635c604cd6e3e1fe4.jpg",
+  "inv3": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/1f233c80bef354052e82be071a5aa890%20(1).jpg",
+  "inv4": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/1f233c80bef354052e82be071a5aa890.jpg",
+  "inv5": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/2e5a8d82d5f7a7bccfa4702c7b901285.jpg",
+  "inv6": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/5adca316c0ba4a1575fbde2c3dcddd0e.jpg",
+  "inv7": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/b3f3c94038d9fbb1348635d4acdee910%20(1).jpg",
+  "inv8": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/b3f3c94038d9fbb1348635d4acdee910%20(2).jpg",
+  "inv9": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/b3f3c94038d9fbb1348635d4acdee910.jpg",
+  "inv10": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/c416e6fd7d0d8d03b55eac21de2c43f8.jpg",
+  "inv11": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/c925f2740489b9d444e13ecd215c2d2a.jpg",
+  "inv12": "%D8%A7%D9%8A%D9%86%D9%88%D9%81%D8%A7/d07c85d42b18f18d23f5d8c8c9785912.jpg",
 };
 
 function resolveImgPath(relativePath) {
@@ -1502,12 +1693,13 @@ ${specLines}${imgLine}
 من كتالوج مكة للأدوات الصحية`;
 }
 
-function sendWhatsAppInquiry(e) {
+function sendWhatsAppInquiry(e, phone) {
   if (e) e.preventDefault();
   const p = modalProduct;
   if (!p) return false;
 
-  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(buildWhatsAppMessage(p))}`;
+  const num = phone || PHONE;
+  const url = `https://wa.me/${num}?text=${encodeURIComponent(buildWhatsAppMessage(p))}`;
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
   if (isMobile) {
@@ -1532,6 +1724,7 @@ const companies = [
   { id: "كليوباترا", name: "كليوباترا",   color: "#8b5cf6" },
   { id: "بليزا",     name: "بليزا",       color: "#ec4899" },
   { id: "سان بيور",  name: "سان بيور",    color: "#06b6d4" },
+  { id: "اينوفا",     name: "اينوفا",       color: "#f59e0b" },
 ];
 
 
@@ -1663,104 +1856,297 @@ const products = [
    specs:{النوع:"Wall-Hung Urinal"}},
 
   // ═══════════════ كليوباترا ═══════════════
-  {id:"cleo1", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo1", icon:"🚽", isNew:true,
-   name:"قاعدة أرضية بريما", tags:["أرضي","بريما"],
-   specs:{الموديل:"Prima",الضمان:"5 سنوات"}},
-
-  {id:"cleo2", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo2", icon:"🚽", isNew:true,
-   name:"قاعدة معلقة ألترا", tags:["معلق","ألترا"],
-   specs:{الموديل:"Ultra",الضمان:"5 سنوات"}},
-
-  {id:"cleo3", company:"كليوباترا", cat:"sanitary", sub:"قاعده", img:"cleo3", icon:"🚽",
-   name:"قاعدة كومباكت", tags:["كومباكت","توفير مياه"],
-   specs:{الخزان:"دبل فلاش 3/6 لتر"}},
-
-  {id:"cleo4", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo4", icon:"🪣", isNew:true,
-   name:"حوض كاونتر فوق الرخام", tags:["كونتر","فاخر"],
-   specs:{المقاس:"55×42 سم"}},
-
-  {id:"cleo5", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo5", icon:"🪣",
-   name:"حوض نصف عمود", tags:["نصف عمود","45سم"],
-   specs:{الطول:"45 سم"}},
-
-  {id:"cleo6", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo6", icon:"🪣",
-   name:"حوض عمود كامل", tags:["عمود كامل"],
-   specs:{الطول:"62 سم"}},
-
-  {id:"cleo7", company:"كليوباترا", cat:"sanitary", sub:"بيديه", img:"cleo7", icon:"🚿", isNew:true,
-   name:"بيديه أرضي", tags:["بيديه","أرضي"],
-   specs:{ملاحظة:"مطابق لكولكشن Prima"}},
-
-  {id:"cleo8", company:"كليوباترا", cat:"sanitary", sub:"بيديه", img:"cleo8", icon:"🚿",
-   name:"بيديه معلق", tags:["معلق"],
-   specs:{ملاحظة:"مطابق لكولكشن Ultra"}},
-
+    {id:"cleo1", company:"كليوباترا", cat:"sanitary", sub:"أدوات صحية", img:"cleo1", icon:"🚽",
+   name:"قاعدة سيراميك كليوباترا", tags:["كليوباترا"], isNew:true,
+   specs:{الموديل:"قاعدة سيراميك",الشركة:"كليوباترا"}},
+    {id:"cleo2", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo2", icon:"🚽",
+   name:"حوض كاونتر كليوباترا", tags:["كليوباترا"], isNew:true,
+   specs:{الموديل:"حوض كاونتر",الشركة:"كليوباترا"}},
+    {id:"cleo3", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo3", icon:"🚽",
+   name:"حوض عمود كليوباترا", tags:["كليوباترا"], isNew:true,
+   specs:{الموديل:"حوض عمود",الشركة:"كليوباترا"}},
+    {id:"cleo4", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo4", icon:"🚽",
+   name:"حوض نصف عمود كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض نصف عمود",الشركة:"كليوباترا"}},
+    {id:"cleo5", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo5", icon:"🚽",
+   name:"حوض معلق كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض معلق",الشركة:"كليوباترا"}},
+    {id:"cleo6", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo6", icon:"🚽",
+   name:"حوض فيسيل كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض فيسيل",الشركة:"كليوباترا"}},
+    {id:"cleo7", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo7", icon:"🚽",
+   name:"حوض رخامي كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض رخامي",الشركة:"كليوباترا"}},
+    {id:"cleo8", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo8", icon:"🚽",
+   name:"حوض كاونتر كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر",الشركة:"كليوباترا"}},
+    {id:"cleo9", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo9", icon:"🚽",
+   name:"حوض عمود كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض عمود",الشركة:"كليوباترا"}},
+    {id:"cleo10", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo10", icon:"🚽",
+   name:"حوض نصف عمود كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض نصف عمود",الشركة:"كليوباترا"}},
+    {id:"cleo11", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo11", icon:"🚽",
+   name:"حوض معلق كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض معلق",الشركة:"كليوباترا"}},
+    {id:"cleo12", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo12", icon:"🚽",
+   name:"حوض فيسيل كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض فيسيل",الشركة:"كليوباترا"}},
+    {id:"cleo13", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo13", icon:"🚽",
+   name:"حوض رخامي كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض رخامي",الشركة:"كليوباترا"}},
+    {id:"cleo14", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo14", icon:"🚽",
+   name:"حوض كاونتر كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر",الشركة:"كليوباترا"}},
+    {id:"cleo15", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo15", icon:"🚽",
+   name:"حوض عمود كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض عمود",الشركة:"كليوباترا"}},
+    {id:"cleo16", company:"كليوباترا", cat:"sanitary", sub:"أحواض", img:"cleo16", icon:"🚽",
+   name:"حوض نصف عمود كليوباترا", tags:["كليوباترا"], isNew:false,
+   specs:{الموديل:"حوض نصف عمود",الشركة:"كليوباترا"}},
   // ═══════════════ بليزا ═══════════════
-  {id:"blz1", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz1", icon:"🚽", isNew:true,
-   name:"قاعدة أرضية Pickly", tags:["أرضي","Pickly"],
-   specs:{السلسلة:"Pickly Mono block"}},
-
-  {id:"blz2", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz2", icon:"🚽", isNew:true,
-   name:"قاعدة معلقة Slim", tags:["معلق","Slim"],
-   specs:{النوع:"Wall-Hung"}},
-
-  {id:"blz3", company:"بليزا", cat:"sanitary", sub:"قاعده", img:"blz3", icon:"🚽",
-   name:"قاعدة كومباكت Dual Flush", tags:["كومباكت","توفير مياه"],
-   specs:{الخزان:"Dual Flush"}},
-
-  {id:"blz4", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz4", icon:"🪣", isNew:true,
-   name:"حوض كاونتر Round", tags:["كونتر","دائري"],
-   specs:{الشكل:"Round"}},
-
-  {id:"blz5", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz5", icon:"🪣",
-   name:"حوض نصف عمود", tags:["نصف عمود"],
-   specs:{الطول:"45 سم"}},
-
-  {id:"blz6", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz6", icon:"🪣",
-   name:"حوض عمود كامل", tags:["عمود كامل"],
-   specs:{الطول:"63 سم"}},
-
-  {id:"blz7", company:"بليزا", cat:"sanitary", sub:"بيديه", img:"blz7", icon:"🚿", isNew:true,
-   name:"بيديه أرضي", tags:["بيديه","أرضي"],
-   specs:{النوع:"Floor-Mounted"}},
-
-  {id:"blz8", company:"بليزا", cat:"sanitary", sub:"بيديه", img:"blz8", icon:"🚿",
-   name:"بيديه معلق", tags:["معلق"],
-   specs:{النوع:"Wall-Hung"}},
-
+    {id:"blz1", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz1", icon:"🚽",
+   name:"قاعدة سيراميك بليزا", tags:["بليزا"], isNew:true,
+   specs:{الموديل:"قاعدة سيراميك",الشركة:"بليزا"}},
+    {id:"blz2", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz2", icon:"🚽",
+   name:"حوض سيراميك بليزا", tags:["بليزا"], isNew:true,
+   specs:{الموديل:"حوض سيراميك",الشركة:"بليزا"}},
+    {id:"blz3", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz3", icon:"🚽",
+   name:"بيديه سيراميك بليزا", tags:["بليزا"], isNew:true,
+   specs:{الموديل:"بيديه سيراميك",الشركة:"بليزا"}},
+  {id:"blz4", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz4", icon:"🚽",
+   name:"حوض بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض بليزا",الشركة:"بليزا"}},
+    {id:"blz5", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz5", icon:"🚽",
+   name:"حوض كاونتر بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر",الشركة:"بليزا"}},
+    {id:"blz6", company:"بليزا", cat:"sanitary", sub:"أحواض", img:"blz6", icon:"🚽",
+   name:"حوض عمود بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض عمود",الشركة:"بليزا"}},
+    {id:"blz7", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz7", icon:"🚽",
+   name:"طقم حمام بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"طقم حمام",الشركة:"بليزا"}},
+    {id:"blz8", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz8", icon:"🚽",
+   name:"مغسلة سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"مغسلة سيراميك",الشركة:"بليزا"}},
+    {id:"blz9", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz9", icon:"🚽",
+   name:"كرسي سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"كرسي سيراميك",الشركة:"بليزا"}},
+    {id:"blz10", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz10", icon:"🚽",
+   name:"حوض كاونتر فاخر بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر فاخر",الشركة:"بليزا"}},
+    {id:"blz11", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz11", icon:"🚽",
+   name:"قاعدة أرضية فاخرة بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"قاعدة أرضية فاخرة",الشركة:"بليزا"}},
+    {id:"blz12", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz12", icon:"🚽",
+   name:"بيديه فاخر بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"بيديه فاخر",الشركة:"بليزا"}},
+    {id:"blz13", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz13", icon:"🚽",
+   name:"طقم دورة مياه بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"طقم دورة مياه",الشركة:"بليزا"}},
+    {id:"blz14", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz14", icon:"🚽",
+   name:"مغسلة رخامية بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"مغسلة رخامية",الشركة:"بليزا"}},
+    {id:"blz15", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz15", icon:"🚽",
+   name:"طقم تشطيب بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"طقم تشطيب",الشركة:"بليزا"}},
+    {id:"blz16", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz16", icon:"🚽",
+   name:"قاعدة سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"قاعدة سيراميك",الشركة:"بليزا"}},
+    {id:"blz17", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz17", icon:"🚽",
+   name:"حوض سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض سيراميك",الشركة:"بليزا"}},
+    {id:"blz18", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz18", icon:"🚽",
+   name:"بيديه سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"بيديه سيراميك",الشركة:"بليزا"}},
+    {id:"blz19", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz19", icon:"🚽",
+   name:"طقم حمام بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"طقم حمام",الشركة:"بليزا"}},
+    {id:"blz20", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz20", icon:"🚽",
+   name:"مغسلة سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"مغسلة سيراميك",الشركة:"بليزا"}},
+    {id:"blz21", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz21", icon:"🚽",
+   name:"كرسي سيراميك بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"كرسي سيراميك",الشركة:"بليزا"}},
+    {id:"blz22", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz22", icon:"🚽",
+   name:"حوض كاونتر فاخر بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر فاخر",الشركة:"بليزا"}},
+    {id:"blz23", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz23", icon:"🚽",
+   name:"قاعدة أرضية فاخرة بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"قاعدة أرضية فاخرة",الشركة:"بليزا"}},
+    {id:"blz24", company:"بليزا", cat:"sanitary", sub:"أدوات صحية", img:"blz24", icon:"🚽",
+   name:"بيديه فاخر بليزا", tags:["بليزا"], isNew:false,
+   specs:{الموديل:"بيديه فاخر",الشركة:"بليزا"}},
   // ═══════════════ سان بيور ═══════════════
-  {id:"sp1", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp1", icon:"🚽", isNew:true,
-   name:"قاعدة Titan Close Coupled", tags:["Titan","أرضي"],
-   specs:{السلسلة:"Titan"}},
-
-  {id:"sp2", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp2", icon:"🚽", isNew:true,
-   name:"قاعدة Kepler معلقة", tags:["Kepler","معلق"],
-   specs:{النوع:"Wall-Mounted"}},
-
-  {id:"sp3", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp3", icon:"🚽",
-   name:"قاعدة Flip كومباكت", tags:["Flip","كومباكت"],
-   specs:{النوع:"Compact"}},
-
-  {id:"sp4", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp4", icon:"🪣", isNew:true,
-   name:"حوض Calacatta كاونتر", tags:["Calacatta","فاخر"],
-   specs:{النوع:"Counter-Top"}},
-
-  {id:"sp5", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp5", icon:"🪣",
-   name:"حوض Kepler عمود", tags:["Kepler","عمود"],
-   specs:{النوع:"Pedestal"}},
-
-  {id:"sp6", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp6", icon:"🪣",
-   name:"حوض Lynx مستطيل", tags:["Lynx","مستطيل"],
-   specs:{الشكل:"مستطيل"}},
-
-  {id:"sp7", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp7", icon:"🚿", isNew:true,
-   name:"طقم قاعدة وبيديه Vega", tags:["Vega","طقم"],
-   specs:{النوع:"Toilet + Bidet Set"}},
-
-  {id:"sp8", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp8", icon:"🚿",
-   name:"بيديه Half Pedestal", tags:["Half","معلق"],
-   specs:{النوع:"Semi-Pedestal Bidet"}},
-];
+  {id:"sp1", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp1", icon:"🚽",
+   name:"Aden", tags:["سان بيور"], isNew:true,
+   specs:{الموديل:"Aden",الشركة:"سان بيور"}},
+  {id:"sp2", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp2", icon:"🚽",
+   name:"Carmi Antislip Interactive LightMix", tags:["سان بيور"], isNew:true,
+   specs:{الموديل:"Carmi Antislip Interactive LightMix",الشركة:"سان بيور"}},
+  {id:"sp3", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp3", icon:"🚽",
+   name:"EGrace", tags:["سان بيور"], isNew:true,
+   specs:{الموديل:"EGrace",الشركة:"سان بيور"}},
+  {id:"sp4", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp4", icon:"🚽",
+   name:"EKapsel E", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"EKapsel E",الشركة:"سان بيور"}},
+  {id:"sp5", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp5", icon:"🚽",
+   name:"Eros", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Eros",الشركة:"سان بيور"}},
+  {id:"sp6", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp6", icon:"🚽",
+   name:"Felis", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Felis",الشركة:"سان بيور"}},
+  {id:"sp7", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp7", icon:"🚽",
+   name:"flip 2", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"flip 2",الشركة:"سان بيور"}},
+  {id:"sp8", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp8", icon:"🚽",
+   name:"flute Edit", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"flute Edit",الشركة:"سان بيور"}},
+  {id:"sp9", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp9", icon:"🚽",
+   name:"Half pes", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Half pes",الشركة:"سان بيور"}},
+  {id:"sp10", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp10", icon:"🚽",
+   name:"Harmony1", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Harmony1",الشركة:"سان بيور"}},
+  {id:"sp11", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp11", icon:"🚽",
+   name:"Hydra", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Hydra",الشركة:"سان بيور"}},
+  {id:"sp12", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp12", icon:"🚽",
+   name:"Icarus", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Icarus",الشركة:"سان بيور"}},
+  {id:"sp13", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp13", icon:"🚽",
+   name:"Kepler Furniture", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Kepler Furniture",الشركة:"سان بيور"}},
+  {id:"sp14", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp14", icon:"🚽",
+   name:"Kepler Pedestal", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Kepler Pedestal",الشركة:"سان بيور"}},
+  {id:"sp15", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp15", icon:"🚽",
+   name:"Kepler Wall Mounted", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Kepler Wall Mounted",الشركة:"سان بيور"}},
+  {id:"sp16", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp16", icon:"🚽",
+   name:"Lynx Rect", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Lynx Rect",الشركة:"سان بيور"}},
+  {id:"sp17", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp17", icon:"🚽",
+   name:"Lynx", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Lynx",الشركة:"سان بيور"}},
+  {id:"sp18", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp18", icon:"🚽",
+   name:"MagnusBlck", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"MagnusBlck",الشركة:"سان بيور"}},
+  {id:"sp19", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp19", icon:"🚽",
+   name:"MagnusBlckToielt", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"MagnusBlckToielt",الشركة:"سان بيور"}},
+  {id:"sp20", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp20", icon:"🚽",
+   name:"Main shot calacatta", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Main shot calacatta",الشركة:"سان بيور"}},
+  {id:"sp21", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp21", icon:"🚽",
+   name:"newyork001F", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"newyork001F",الشركة:"سان بيور"}},
+  {id:"sp22", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp22", icon:"🚽",
+   name:"Oberon", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Oberon",الشركة:"سان بيور"}},
+  {id:"sp23", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp23", icon:"🚽",
+   name:"Oberon", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Oberon",الشركة:"سان بيور"}},
+  {id:"sp24", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp24", icon:"🚽",
+   name:"Orion", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Orion",الشركة:"سان بيور"}},
+  {id:"sp25", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp25", icon:"🚽",
+   name:"PavilionE", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"PavilionE",الشركة:"سان بيور"}},
+  {id:"sp26", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp26", icon:"🚽",
+   name:"Picasso W", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Picasso W",الشركة:"سان بيور"}},
+  {id:"sp27", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp27", icon:"🚽",
+   name:"Saturn", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Saturn",الشركة:"سان بيور"}},
+  {id:"sp28", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp28", icon:"🚽",
+   name:"Saturn", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Saturn",الشركة:"سان بيور"}},
+    {id:"sp29", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp29", icon:"🚽",
+   name:"حوض كاونتر سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض كاونتر",الشركة:"سان بيور"}},
+    {id:"sp30", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp30", icon:"🚽",
+   name:"حوض عمود سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض عمود",الشركة:"سان بيور"}},
+    {id:"sp31", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp31", icon:"🚽",
+   name:"حوض نصف عمود سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض نصف عمود",الشركة:"سان بيور"}},
+    {id:"sp32", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp32", icon:"🚽",
+   name:"حوض معلق سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض معلق",الشركة:"سان بيور"}},
+    {id:"sp33", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp33", icon:"🚽",
+   name:"حوض فيسيل سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض فيسيل",الشركة:"سان بيور"}},
+    {id:"sp34", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp34", icon:"🚽",
+   name:"حوض رخامي سان بيور", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"حوض رخامي",الشركة:"سان بيور"}},
+  {id:"sp35", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp35", icon:"🚽",
+   name:"Semplice 1", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Semplice 1",الشركة:"سان بيور"}},
+  {id:"sp36", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp36", icon:"🚽",
+   name:"Simplice C 1e0", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Simplice C 1e0",الشركة:"سان بيور"}},
+  {id:"sp37", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp37", icon:"🚽",
+   name:"Sirius", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Sirius",الشركة:"سان بيور"}},
+  {id:"sp38", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp38", icon:"🚽",
+   name:"Soho M", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Soho M",الشركة:"سان بيور"}},
+  {id:"sp39", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp39", icon:"🚽",
+   name:"Titan AC", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Titan AC",الشركة:"سان بيور"}},
+  {id:"sp40", company:"سان بيور", cat:"sanitary", sub:"قاعده", img:"sp40", icon:"🚽",
+   name:"Titan Close Coupled", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Titan Close Coupled",الشركة:"سان بيور"}},
+  {id:"sp41", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp41", icon:"🚽",
+   name:"Titan Furniture", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Titan Furniture",الشركة:"سان بيور"}},
+  {id:"sp42", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp42", icon:"🚽",
+   name:"Toilet calacatta", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Toilet calacatta",الشركة:"سان بيور"}},
+  {id:"sp43", company:"سان بيور", cat:"sanitary", sub:"بيديه", img:"sp43", icon:"🚽",
+   name:"Vega   Toilet and Bidet", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Vega   Toilet and Bidet",الشركة:"سان بيور"}},
+  {id:"sp44", company:"سان بيور", cat:"sanitary", sub:"أحواض", img:"sp44", icon:"🚽",
+   name:"Venus", tags:["سان بيور"], isNew:false,
+   specs:{الموديل:"Venus",الشركة:"سان بيور"}},
+  // ═══════════════ اينوفا ═══════════════
+    {id:"inv1", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv1", icon:"🛁",
+   name:"قاعدة سيراميك اينوفا", tags:["اينوفا"], isNew:true,
+   specs:{الموديل:"قاعدة سيراميك",الشركة:"اينوفا"}},
+    {id:"inv2", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv2", icon:"🛁",
+   name:"حوض سيراميك اينوفا", tags:["اينوفا"], isNew:true,
+   specs:{الموديل:"حوض سيراميك",الشركة:"اينوفا"}},
+    {id:"inv3", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv3", icon:"🛁",
+   name:"بيديه سيراميك اينوفا", tags:["اينوفا"], isNew:true,
+   specs:{الموديل:"بيديه سيراميك",الشركة:"اينوفا"}},
+    {id:"inv4", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv4", icon:"🛁",
+   name:"طقم حمام اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"طقم حمام",الشركة:"اينوفا"}},
+    {id:"inv5", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv5", icon:"🛁",
+   name:"مغسلة سيراميك اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"مغسلة سيراميك",الشركة:"اينوفا"}},
+    {id:"inv6", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv6", icon:"🛁",
+   name:"كرسي سيراميك اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"كرسي سيراميك",الشركة:"اينوفا"}},
+    {id:"inv7", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv7", icon:"🛁",
+   name:"حوض كاونتر فاخر اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"حوض كاونتر فاخر",الشركة:"اينوفا"}},
+    {id:"inv8", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv8", icon:"🛁",
+   name:"قاعدة أرضية فاخرة اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"قاعدة أرضية فاخرة",الشركة:"اينوفا"}},
+    {id:"inv9", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv9", icon:"🛁",
+   name:"بيديه فاخر اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"بيديه فاخر",الشركة:"اينوفا"}},
+    {id:"inv10", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv10", icon:"🛁",
+   name:"طقم دورة مياه اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"طقم دورة مياه",الشركة:"اينوفا"}},
+    {id:"inv11", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv11", icon:"🛁",
+   name:"مغسلة رخامية اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"مغسلة رخامية",الشركة:"اينوفا"}},
+    {id:"inv12", company:"اينوفا", cat:"sanitary", sub:"أدوات صحية", img:"inv12", icon:"🛁",
+   name:"طقم تشطيب اينوفا", tags:["اينوفا"], isNew:false,
+   specs:{الموديل:"طقم تشطيب",الشركة:"اينوفا"}},];
 
 
 /* ===== STATE ===== */
@@ -1915,7 +2301,7 @@ function renderProducts() {
 
   grid.className = "product-grid product-grid--grouped";
 
-  const order = ["ليسكو", "كليوباترا", "بليزا", "سان بيور"];
+  const order = ["ليسكو", "كليوباترا", "بليزا", "سان بيور", "اينوفا"];
   const grouped = {};
   list.forEach(p => {
     const c = p.company || "أخرى";
@@ -2048,10 +2434,29 @@ function openModal(id) {
   `).join("");
 
   modalProduct = p;
-  const msgText = buildWhatsAppMessage(p);
-  document.getElementById("modalWa").href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msgText)}`;
+  document.getElementById("modalWaMenu").innerHTML = `
+    <button type="button" onclick="return sendWhatsAppInquiry(event, PHONE)"><span class="menu-icon">💬</span> 01552079581</button>
+    <button type="button" onclick="return sendWhatsAppInquiry(event, PHONE2)"><span class="menu-icon">💬</span> 01026150859</button>`;
+  closeAllContactMenus();
   document.getElementById("overlay").classList.add("open");
 }
+
+function closeAllContactMenus() {
+  document.querySelectorAll(".contact-picker.open, .floating-contact.open").forEach(el => el.classList.remove("open"));
+}
+
+function toggleContactMenu(id, e) {
+  if (e) e.stopPropagation();
+  const el = document.getElementById(id);
+  if (!el) return;
+  const wasOpen = el.classList.contains("open");
+  closeAllContactMenus();
+  if (!wasOpen) el.classList.add("open");
+}
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".contact-picker")) closeAllContactMenus();
+});
 
 function closeModal() {
   document.getElementById("overlay").classList.remove("open");
@@ -2071,9 +2476,13 @@ renderProducts();
 </script>
 
 
-<a href="https://wa.me/201552079581" class="floating-wa" target="_blank">
-  💬
-</a>
+<div class="floating-contact contact-picker" id="floatingContact">
+  <button type="button" class="floating-wa" onclick="toggleContactMenu('floatingContact', event)" aria-label="واتساب">💬</button>
+  <div class="contact-menu contact-menu-up">
+    <a href="https://wa.me/201552079581" target="_blank"><span class="menu-icon">💬</span> 01552079581</a>
+    <a href="https://wa.me/201026150859" target="_blank"><span class="menu-icon">💬</span> 01026150859</a>
+  </div>
+</div>
 
 </body>
 </html>
